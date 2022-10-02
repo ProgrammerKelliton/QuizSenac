@@ -2,8 +2,8 @@ package com.example.quiz;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,7 +13,7 @@ public class MainActivity extends AppCompatActivity {
 
     Button ans1, ans2, ans3;
     TextView level, question;
-    InitApp init;
+    // InitApp init;
     CheckResponse check;
 
     @Override
@@ -29,8 +29,11 @@ public class MainActivity extends AppCompatActivity {
         question = findViewById(R.id.question);
 
         // Iniciando o App
-        init = new InitApp();
-        level.setText("Level " + init.getCurrentLevel());
+        if(getLevel() == 0)
+        {
+            RecordLevel(1);
+        }
+        level.setText("Level " + getLevel());
 
         // Verificando se resposta é correta
         check = new CheckResponse();
@@ -41,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     private void UpdateUI(String userRespose) {
 
         if (check.ConfirmRespose(userRespose)) {
-            init.addLevel();
+            RecordLevel(getLevel() + 1);
 
             Intent result = new Intent(MainActivity.this, com.example.quiz.result.class);
             result.putExtra("win", true);
@@ -60,5 +63,23 @@ public class MainActivity extends AppCompatActivity {
                 UpdateUI(btn.getText().toString());
             }
         });
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        level.setText("Level " + getLevel());
+    }
+    private void RecordLevel(int level)
+    {
+        SharedPreferences preferences = getSharedPreferences("GlobalKey", MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putInt("level", level);
+        editor.commit();
+    }
+    private int getLevel()
+    {
+        SharedPreferences preferences = getSharedPreferences("GlobalKey", MODE_PRIVATE);
+        return preferences.getInt("level", 0);
     }
 }
