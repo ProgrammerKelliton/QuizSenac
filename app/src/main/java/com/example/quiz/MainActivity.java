@@ -9,12 +9,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
     Button ans1, ans2, ans3;
     TextView level, question;
     // InitApp init;
     CheckResponse check;
+    private ArrayList<Questions> questionsList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,18 +31,21 @@ public class MainActivity extends AppCompatActivity {
         ans3 = findViewById(R.id.ans_C);
         question = findViewById(R.id.question);
 
-        // Iniciando o App
+        // Obtendo nível
         if(getLevel() == 0)
         {
             RecordLevel(1);
         }
         level.setText("Level " + getLevel());
 
-        // Verificando se resposta é correta
+        // Adicionando evento para chamar o Update da UI
         check = new CheckResponse();
         OnClickBtn(ans1);
         OnClickBtn(ans2);
         OnClickBtn(ans3);
+
+        // Buscando dados
+        fetchDB();
     }
     private void UpdateUI(String userRespose) {
 
@@ -81,5 +87,9 @@ public class MainActivity extends AppCompatActivity {
     {
         SharedPreferences preferences = getSharedPreferences("GlobalKey", MODE_PRIVATE);
         return preferences.getInt("level", 0);
+    }
+    private void fetchDB(){
+        QuizDbHelper dbHelper = new QuizDbHelper(this);
+        questionsList = dbHelper.getAllQuestions();
     }
 }

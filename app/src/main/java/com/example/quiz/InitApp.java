@@ -2,6 +2,8 @@ package com.example.quiz;
 
 import android.content.SharedPreferences;
 
+import java.util.ArrayList;
+
 public class InitApp {
 
     int levelUser = 1;
@@ -14,6 +16,7 @@ public class InitApp {
     {
         levelUser++;
     }
+
 
     // Pegar pergunta do bando de dados - getQuestion()
     // Pegar opções - getAnwser()
