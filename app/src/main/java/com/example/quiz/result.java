@@ -24,10 +24,11 @@ public class result extends AppCompatActivity {
         background = findViewById(R.id.background);
         btnConfirm = findViewById(R.id.btnConfirm);
 
-        String winResult = getIntent().getStringExtra("win");
+        boolean winResult = getIntent().getBooleanExtra("win", false);
 
-        if(Boolean.parseBoolean(winResult))
+        if(winResult)
         {
+
             background.setImageResource(R.drawable.win);
             win.setText("Você acertou !");
         }

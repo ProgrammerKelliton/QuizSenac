@@ -10,13 +10,13 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
 
     Button ans1, ans2, ans3;
     TextView level, question, tip;
-    // InitApp init;
     CheckResponse check;
     public ArrayList<Questions> questionsList;
 
@@ -61,15 +61,14 @@ public class MainActivity extends AppCompatActivity {
         OnClickBtn(ans1);
         OnClickBtn(ans2);
         OnClickBtn(ans3);
-
-        // Buscando dados
-        // fetchDB();
     }
 
     private void UpdateUI(String userRespose) {
+        userRespose = userRespose.toUpperCase(Locale.ROOT);
+        String resp = getQuestion(getLevel() - 1).getAnswer_Nr();
+        resp = resp.toUpperCase(Locale.ROOT);
 
-        // Transformar em maiuscula depois verificar
-        if (userRespose == getQuestion(getLevel() - 1).getAnswer_Nr()) { // check.ConfirmRespose(userRespose)
+        if (resp.equals(userRespose)) {
             RecordLevel(getLevel() + 1);
 
             Intent result = new Intent(MainActivity.this, com.example.quiz.result.class);
@@ -80,7 +79,6 @@ public class MainActivity extends AppCompatActivity {
             result.putExtra("win", false);
             startActivity(result);
         }
-
     }
 
     private void OnClickBtn(Button btn) {
@@ -119,15 +117,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void AddQuestion() {
-        Questions myQuestion = new Questions("Qual a capital do Brasil ?", "Roraima", "Bahia", "Brasilia", "Sua sigla é conhecida como DF", "BRASILIA");
-        questionsList.add(myQuestion);
+        Questions secondQuestion = new Questions("Qual a primeira linguagem de programação ?", "Fortran", "Java", "Php", "A primeira linguagem  foi desenvolvida em 1954 e disponibilizada em 1954, por um time da IBM liderado pelo cientista da computação John Backus.", "Fortran");
+        questionsList.add(secondQuestion);
     }
 
     private Questions getQuestion(int index) {
         return questionsList.get(index);
     }
-//    private void fetchDB(){
-//        QuizDbHelper dbHelper = new QuizDbHelper(this);
-//        questionsList = dbHelper.getAllQuestions();
-//    }
 }
