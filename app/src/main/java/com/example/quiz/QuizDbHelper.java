@@ -7,7 +7,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import  com.example.quiz.QuizContract.*;
+import com.example.quiz.QuizContract.*;
 
 import androidx.annotation.Nullable;
 
@@ -67,24 +67,24 @@ public class QuizDbHelper extends SQLiteOpenHelper {
 
     }
     private void fillQuestionsTable(){
-
-        Questions q1 = new Questions( "Android is what ?", "OS", "Drivers", "Software","WEB", 0 );
-        addQuestios(q1);
-
-        Questions q2 = new Questions( "Unity is used for what", "Game Davelopment", "Movie Making", "Software","WEb", 0 );
-        addQuestios(q2);
-
-        Questions q3 = new Questions( "Ram stands  for", "GUI", "Browser", "Random Access Memory","WEB", 1 );
-        addQuestios(q3);
-
-        Questions q4 = new Questions( "Qual foi o primeiro Presidente do Brasil?", "Deodoro da Fonseca ", "Juscelino Kubitscheck ", "Tancredo Neves","WEB", 1 );
-        addQuestios(q4);
-
-        Questions q5 = new Questions( "Android is what ?", "OS", "Drivers", "Software","WEB", 0 );
-        addQuestios(q5);
-
-        Questions q6 = new Questions( "Android is what ?", "OS", "Drivers", "Software","WEB", 0 );
-        addQuestios(q6);
+//
+//        Questions q1 = new Questions( "Android is what ?", "OS", "Drivers", "Software","WEB", 0 );
+//        addQuestios(q1);
+//
+//        Questions q2 = new Questions( "Unity is used for what", "Game Davelopment", "Movie Making", "Software","WEb", 0 );
+//        addQuestios(q2);
+//
+//        Questions q3 = new Questions( "Ram stands  for", "GUI", "Browser", "Random Access Memory","WEB", 1 );
+//        addQuestios(q3);
+//
+//        Questions q4 = new Questions( "Qual foi o primeiro Presidente do Brasil?", "Deodoro da Fonseca ", "Juscelino Kubitscheck ", "Tancredo Neves","WEB", 1 );
+//        addQuestios(q4);
+//
+//        Questions q5 = new Questions( "Android is what ?", "OS", "Drivers", "Software","WEB", 0 );
+//        addQuestios(q5);
+//
+//        Questions q6 = new Questions( "Android is what ?", "OS", "Drivers", "Software","WEB", 0 );
+//        addQuestios(q6);
 
 
 
@@ -117,22 +117,22 @@ public class QuizDbHelper extends SQLiteOpenHelper {
                 null
         );
 
-        if(c.moveToFirst()){
-            do{
-
-                Questions questions = new Questions();
-                questions.setQuestion(c.getString(c.getColumnIndex(QuestionTable.COLUMN_QUESTION)));
-                questions.setQuestion(c.getString(c.getColumnIndex(QuestionTable.COLUMN_OPTION1)));
-                questions.setQuestion(c.getString(c.getColumnIndex(QuestionTable.COLUMN_OPTION2)));
-                questions.setQuestion(c.getString(c.getColumnIndex(QuestionTable.COLUMN_OPTION3)));
-                questions.setQuestion(c.getString(c.getColumnIndex(QuestionTable.COLUMN_TIP)));
-                questions.setQuestion(c.getString(c.getColumnIndex(QuestionTable.COLUMN_ANSWER_NR)));
-
-
-                questionsList.add(questions);
-
-            }while (c.moveToNext());
-        }
+//        if(c.moveToFirst()){
+//            do{
+//
+//                Questions questions = new Questions();
+//                questions.setQuestion(c.getString(c.getColumnIndex(QuestionTable.COLUMN_QUESTION)));
+//                questions.setQuestion(c.getString(c.getColumnIndex(QuestionTable.COLUMN_OPTION1)));
+//                questions.setQuestion(c.getString(c.getColumnIndex(QuestionTable.COLUMN_OPTION2)));
+//                questions.setQuestion(c.getString(c.getColumnIndex(QuestionTable.COLUMN_OPTION3)));
+//                questions.setQuestion(c.getString(c.getColumnIndex(QuestionTable.COLUMN_TIP)));
+//                questions.setQuestion(c.getString(c.getColumnIndex(QuestionTable.COLUMN_ANSWER_NR)));
+//
+//
+//                questionsList.add(questions);
+//
+//            }while (c.moveToNext());
+//        }
         c.close();
         return questionsList;
     }

@@ -1,16 +1,16 @@
 package com.example.quiz;
 
 public class Questions {
-    private  String question;
-    private  String option1;
+    private String question;
+    private String option1;
     private String option2;
-    private  String option3;
+    private String option3;
     private String tip;
-    private  int answer_Nr;
+    private String answer_Nr;
 
-    public  Questions(){}
+    // public  Questions(){}
 
-    public Questions(String question, String option1, String option2, String option3,String tip, int answer_Nr) {
+    public Questions(String question, String option1, String option2, String option3,String tip, String answer_Nr) {
         this.question = question;
         this.option1 = option1;
         this.option2 = option2;
@@ -59,11 +59,11 @@ public class Questions {
         this.tip= tip;
     }
 
-    public int getAnswer_Nr() {
+    public String getAnswer_Nr() {
         return answer_Nr;
     }
 
-    public void setAnswer_Nr(int answer_Nr) {
+    public void setAnswer_Nr(String answer_Nr) {
         this.answer_Nr = answer_Nr;
     }
 }

@@ -15,9 +15,11 @@ public class CheckResponse extends AppCompatActivity {
 
     public boolean ConfirmRespose(String userRespose)
     {
-        // Falta obter a resposta do db
 
-        if(userRespose == "resposta do db")
+        MainActivity main = new MainActivity();
+        String resp = main.questionsList.get(0).getQuestion();
+
+        if(userRespose == resp)
         {
             return true;
         }
